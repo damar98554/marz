@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <title>DamarzDev · License Management Platform</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ===== LOGIN ===== -->
+    <div id="login" class="login">
+        <div class="login-card">
+            <a class="brand brand-link" id="brandLogin" href="#" target="_blank" rel="noopener" aria-label="DamarzDev">
+                <div class="logo"><img class="brand-logo-img" src="" alt="DamarzDev"></div>
+                <div class="brand-text">
+                    <b>DamarzDev</b>
+                    <small>License Management Platform</small>
+                </div>
+            </a>
+            <h1>Selamat datang kembali</h1>
+            <p class="sub">Masuk untuk mengelola ekosistem license Anda.</p>
+            <div class="field">
+                <label>Email / Username</label>
+                <input id="lu" placeholder="Email atau Username" autocomplete="username">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input id="lp" type="password" placeholder="••••••••" autocomplete="current-password">
+            </div>
+            <button class="primary" id="loginBtn" onclick="doLogin()">⟶  Login</button>
+            <div id="err" class="error"></div>
+            <div class="hint">🔐 Akses diverifikasi setiap sesi<br><span style="color:var(--green);">● Sistem aman & terenkripsi</span></div>
+
+            <div class="login-contact">
+                <span>Butuh bantuan? Hubungi Owner</span>
+                <div class="contact-row">
+                    <a class="contact-btn wa" id="waLogin" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <img src="https://cdn.phototourl.com/free/2026-08-27-cd5b0079-dcf8-496e-af94-be32a6512f1b.jpg" alt="WhatsApp">
+                    </a>
+                    <a class="contact-btn tg" id="tgLogin" href="#" target="_blank" rel="noopener" aria-label="Telegram">
+                        <img src="https://cdn.phototourl.com/free/2026-08-27-2da23588-97a5-4279-9b2e-499f7e044c2f.jpg" alt="Telegram">
+                    </a>
+                    <a class="contact-btn tt" id="ttLogin" href="#" target="_blank" rel="noopener" aria-label="TikTok">
+                        <img src="https://cdn.phototourl.com/free/2026-08-27-a9da81b0-af49-4471-9443-a2a9f5c9a6a9.jpg" alt="TikTok">
+                    </a>
+                    <a class="contact-btn web" id="webLogin" href="#" target="_blank" rel="noopener" aria-label="Website DamarzDev">
+                        <img class="brand-logo-img" src="" alt="DamarzDev">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== APP ===== -->
+    <div id="app" style="display:none;">
+
+        <!-- mobile bar -->
+        <div class="mobilebar">
+            <button class="hamb" onclick="toggleSidebar()">☰</button>
+            <a class="brand-mid brand-link" id="brandMobile" href="#" target="_blank" rel="noopener" aria-label="DamarzDev">
+                <img class="brand-logo-img brand-logo-mini" src="" alt="DamarzDev">
+                <span>DamarzDev</span>
+            </a>
+            <span id="mobileCredit" style="color:#2dd4a0;font-weight:700;font-size:14px;">💰 0</span>
+            <button class="more-btn" onclick="toggleSidebar()">⋮</button>
+        </div>
+
+        <!-- sidebar -->
+        <aside class="sidebar" id="side">
+            <a class="sidebrand brand-link" id="brandSide" href="#" target="_blank" rel="noopener" aria-label="DamarzDev">
+                <div class="logo"><img class="brand-logo-img" src="" alt="DamarzDev"></div>
+                <div>
+                    <b>DamarzDev</b>
+                    <small>License Platform</small>
+                </div>
+            </a>
+
+            <!-- OWNER NAV -->
+            <nav class="nav" id="navOwner">
+                <button class="active" data-page="dashboard" onclick="go('dashboard',this)"><span class="icon">▣</span> Dashboard</button>
+                <div class="nav-label">License Keys</div>
+                <button data-page="add" onclick="go('add',this)"><span class="icon">＋</span> Add Key</button>
+                <button data-page="keys" onclick="go('keys',this)"><span class="icon">▤</span> Manage Key (All)</button>
+                <button data-page="mykeys" onclick="go('mykeys',this)"><span class="icon">▤</span> Manage Key (Pribadi)</button>
+                <div class="nav-label">Admin</div>
+                <button data-page="admins" onclick="go('admins',this)"><span class="icon">⚙</span> Manage Admin</button>
+                <button data-page="createAdmin" onclick="go('createAdmin',this)"><span class="icon">✦</span> Create Admin</button>
+                <div class="nav-label">Reseller</div>
+                <button data-page="resellers" onclick="go('resellers',this)"><span class="icon">♙</span> Manage Reseller</button>
+                <button data-page="createReseller" onclick="go('createReseller',this)"><span class="icon">✦</span> Create Reseller</button>
+                <div class="nav-label">System</div>
+                <button data-page="credits" onclick="go('credits',this)"><span class="icon">◆</span> Dev Credit</button>
+                <button data-page="contact" onclick="go('contact',this)"><span class="icon">☏</span> Kontak</button>
+            </nav>
+
+            <!-- ADMIN NAV -->
+            <nav class="nav" id="navAdmin" style="display:none">
+                <button class="active" data-page="dashboard" onclick="go('dashboard',this)"><span class="icon">▣</span> Dashboard</button>
+                <div class="nav-label">License Keys</div>
+                <button data-page="add" onclick="go('add',this)"><span class="icon">＋</span> Add Key</button>
+                <button data-page="keys" onclick="go('keys',this)"><span class="icon">▤</span> Manage Key (All)</button>
+                <button data-page="mykeys" onclick="go('mykeys',this)"><span class="icon">▤</span> Manage Key (Pribadi)</button>
+                <div class="nav-label">Reseller</div>
+                <button data-page="resellers" onclick="go('resellers',this)"><span class="icon">♙</span> Reseller Saya</button>
+                <button data-page="createReseller" onclick="go('createReseller',this)"><span class="icon">✦</span> Create Reseller</button>
+                <div class="nav-label">System</div>
+                <button data-page="contact" onclick="go('contact',this)"><span class="icon">☏</span> Kontak</button>
+            </nav>
+
+            <!-- RESELLER NAV -->
+            <nav class="nav" id="navReseller" style="display:none">
+                <button class="active" data-page="dashboard" onclick="go('dashboard',this)"><span class="icon">▣</span> Dashboard</button>
+                <div class="nav-label">License Keys</div>
+                <button data-page="add" onclick="go('add',this)"><span class="icon">＋</span> Create Key</button>
+                <button data-page="mykeys" onclick="go('mykeys',this)"><span class="icon">▤</span> My Keys</button>
+                <div class="nav-label">System</div>
+                <button data-page="contact" onclick="go('contact',this)"><span class="icon">☏</span> Kontak</button>
+            </nav>
+
+            <button class="nav logout-btn" onclick="logout()"><span class="icon">↪</span> Logout</button>
+        </aside>
+
+        <!-- main -->
+        <main class="main">
+            <div class="wrap">
+
+                <!-- top -->
+                <header class="top">
+                    <div class="title">
+                        <h1>Dashboard <span>System</span></h1>
+                        <p>Ikhtisar real-time operasi license Anda.</p>
+                    </div>
+                    <div class="user-badge">
+                        <div class="avatar" id="avatar">O</div>
+                        <span id="who">Owner</span>
+                        <span id="headerCredit" style="margin-left:10px;padding-left:12px;border-left:1px solid var(--border);color:#2dd4a0;font-weight:700;font-size:13px;">💰 0</span>
+                    </div>
+                </header>
+
+                <!-- ===== DASHBOARD ===== -->
+                <section class="page active" id="dashboard">
+                    <div class="stats" id="statsContainer">
+                        <div class="stat green owner-admin-only" id="statActiveAll">
+                            <div class="bg-glow"></div>
+                            <label>Active License (All)</label>
+                            <div class="num green" id="activeAll">0</div>
+                            <div class="sub-label">Semua key aktif yang dapat Anda lihat</div>
+                            <div class="icon-big">▣</div>
+                        </div>
+                        <div class="stat green" id="statActivePrivate">
+                            <div class="bg-glow" style="background: var(--purple);"></div>
+                            <label>Active License (Pribadi)</label>
+                            <div class="num" style="color: var(--purple);" id="activePrivate">0</div>
+                            <div class="sub-label">Key aktif milik saya sendiri</div>
+                            <div class="icon-big">▣</div>
+                        </div>
+                        <div class="stat yellow owner-admin-only" id="statAwaitAll">
+                            <div class="bg-glow"></div>
+                            <label>Awaiting Start (All)</label>
+                            <div class="num yellow" id="awaitAll">0</div>
+                            <div class="sub-label">Semua key paused/nonaktif</div>
+                            <div class="icon-big">⌛</div>
+                        </div>
+                        <div class="stat yellow" id="statAwaitPrivate">
+                            <div class="bg-glow" style="background: var(--purple);"></div>
+                            <label>Awaiting Start (Pribadi)</label>
+                            <div class="num" style="color: var(--purple);" id="awaitPrivate">0</div>
+                            <div class="sub-label">Key paused/nonaktif milik saya</div>
+                            <div class="icon-big">⌛</div>
+                        </div>
+                    </div>
+
+                    <div class="panel owner-only">
+                        <div class="panel-head">
+                            <h2><span class="emoji">ϟ</span> Recent Activity</h2>
+                            <button class="btn-ghost" onclick="go('keys')">View All →</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="activity-list" id="activity"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel" id="rankPanel">
+                        <div class="panel-head">
+                            <h2><span class="emoji">♛</span> Elite Ranking</h2>
+                            <button class="btn-ghost" onclick="go('resellers')">See All →</button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="rank-list" id="ranking"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== ADD KEY ===== -->
+                <section class="page" id="add">
+                    <div class="panel form-panel">
+                        <div class="panel-head" style="margin:-28px -30px 22px -30px; border-radius:var(--radius) var(--radius) 0 0;">
+                            <h2 id="addTitle"><span class="emoji">＋</span> Add License Key</h2>
+                        </div>
+                        <div class="mode-toggle">
+                            <button id="rm" class="sel" onclick="mode('random')">✦ Random</button>
+                            <button id="cm" onclick="mode('custom')">✎ Custom</button>
+                        </div>
+                        <div class="form-grid">
+                            <div class="field" id="randomBox">
+                                <label>Prefix</label>
+                                <input id="prefix" value="MARZZ">
+                            </div>
+                            <div class="field" id="customBox" style="display:none">
+                                <label>Custom Key</label>
+                                <input id="custom" placeholder="e.g. NDRA-7X9">
+                            </div>
+                            <div class="field">
+                                <label>Duration</label>
+                                <select id="duration" onchange="durationUI()">
+                                    <option value="hours">Hours</option>
+                                    <option value="day">Day</option>
+                                    <option value="week">Week</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="yearly">Yearly</option>
+                                    <option value="permanent">Permanent</option>
+                                </select>
+                                <div class="cost-hint" id="cost">2 credits</div>
+                            </div>
+                            <div class="field" id="amountBox">
+                                <label>Amount</label>
+                                <input id="amount" type="number" min="1" value="1">
+                                <div class="cost-hint" id="unit">hours</div>
+                            </div>
+                            <div class="field">
+                                <label>Max Devices</label>
+                                <input id="max" type="number" min="1" max="999" value="1">
+                            </div>
+                            <div class="field">
+                                <label>Tag / Label</label>
+                                <input id="tag" placeholder="e.g. Customer A">
+                            </div>
+                            <div class="field full">
+                                <button class="primary" onclick="createKey()">✦ Generate Key</button>
+                            </div>
+                        </div>
+                        <div class="result-box" id="result" style="display:none">
+                            <code id="resultKey">—</code>
+                            <button class="btn-ghost" onclick="copyResult()">📋 Copy</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== ALL KEYS ===== -->
+                <section class="page" id="keys">
+                    <div class="panel">
+                        <div class="panel-head"><h2><span class="emoji">▤</span> Manage Key (All)</h2></div>
+                        <div class="toolbar">
+                            <input id="search" placeholder="Search key or tag..." oninput="renderKeys()">
+                            <button class="btn-tool" onclick="bulk('pause')">⏸ Pause All</button>
+                            <button class="btn-tool" onclick="bulk('unpause')">▶ Unpause All</button>
+                            <button class="btn-tool" onclick="bulk('reset')">⟳ Reset Devices</button>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>License Key</th><th>Expires</th><th>Devices</th><th>Device IDs</th><th>Status</th><th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="keyRows"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== MY KEYS (PRIVATE) ===== -->
+                <section class="page" id="mykeys">
+                    <div class="panel">
+                        <div class="panel-head"><h2><span class="emoji">▤</span> My Keys (Pribadi)</h2></div>
+                        <div class="toolbar">
+                            <input id="searchMyKeys" placeholder="Search key or tag..." oninput="renderMyKeys()">
+                            <button class="btn-tool" onclick="bulk('pause')">⏸ Pause All</button>
+                            <button class="btn-tool" onclick="bulk('unpause')">▶ Unpause All</button>
+                            <button class="btn-tool" onclick="bulk('reset')">⟳ Reset Devices</button>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>License Key</th><th>Expires</th><th>Devices</th><th>Device IDs</th><th>Status</th><th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="myKeyRows"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== ADMINS (Owner only) ===== -->
+                <section class="page owner-only" id="admins">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2><span class="emoji">⚙</span> Manage Admin</h2>
+                            <button class="btn-ghost" onclick="go('createAdmin')">＋ Create</button>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr><th>Account</th><th>Reseller</th><th>Credit</th><th>Active Until</th><th>Status</th><th>Action</th></tr>
+                                </thead>
+                                <tbody id="adminRows"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== CREATE ADMIN (Owner only) ===== -->
+                <section class="page owner-only" id="createAdmin">
+                    <div class="panel form-panel">
+                        <div class="panel-head" style="margin:-28px -30px 22px -30px; border-radius:var(--radius) var(--radius) 0 0;">
+                            <h2><span class="emoji">✦</span> Create Admin</h2>
+                        </div>
+                        <p style="color:var(--muted);margin-bottom:16px;font-size:13px;">
+                            Admin dapat membuat & mengelola akun Reseller, serta melihat license milik dirinya dan reseller di bawahnya.
+                            Admin <b>tidak</b> dapat mengatur kredit — kredit reseller hanya dapat diatur oleh Owner.
+                        </p>
+                        <div class="form-grid">
+                            <div class="field">
+                                <label>Username</label>
+                                <input id="au" placeholder="admin_name">
+                            </div>
+                            <div class="field">
+                                <label>Password</label>
+                                <input id="ap" type="password" placeholder="••••••••">
+                            </div>
+                            <div class="field">
+                                <label>Period</label>
+                                <select id="ad">
+                                    <option value="hours">Hours</option>
+                                    <option value="day">Day</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="yearly">Yearly</option>
+                                    <option value="permanent" selected>Permanent</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Period Amount</label>
+                                <input id="aa" type="number" min="1" value="1">
+                            </div>
+                            <div class="field full">
+                                <button class="primary" onclick="createAdmin()">⟳ Create Admin</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== RESELLERS ===== -->
+                <section class="page owner-admin-only" id="resellers">
+                    <div class="panel">
+                        <div class="panel-head">
+                            <h2><span class="emoji">♙</span> Manage Reseller</h2>
+                            <button class="btn-ghost" onclick="go('createReseller')">＋ Create</button>
+                        </div>
+                        <div class="table-wrap">
+                            <table class="table">
+                                <thead>
+                                    <tr><th>Account</th><th>Credits</th><th>Keys Created</th><th>Active Until</th><th>Status</th><th>Action</th></tr>
+                                </thead>
+                                <tbody id="resRows"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== CREATE RESELLER ===== -->
+                <section class="page owner-admin-only" id="createReseller">
+                    <div class="panel form-panel">
+                        <div class="panel-head" style="margin:-28px -30px 22px -30px; border-radius:var(--radius) var(--radius) 0 0;">
+                            <h2><span class="emoji">✦</span> Create Reseller</h2>
+                        </div>
+                        <div class="form-grid">
+                            <div class="field">
+                                <label>Username</label>
+                                <input id="ru" placeholder="reseller_name">
+                            </div>
+                            <div class="field">
+                                <label>Password</label>
+                                <input id="rp" type="password" placeholder="••••••••">
+                            </div>
+                            <div class="field">
+                                <label>Credit</label>
+                                <input id="rc" type="text" value="100" placeholder='angka, atau "unlimited" / "∞"'>
+                                <div class="cost-hint owner-only">Ketik <b>unlimited</b> atau <b>∞</b> untuk kredit tanpa batas (hanya Owner).</div>
+                            </div>
+                            <div class="field">
+                                <label>Period</label>
+                                <select id="rd">
+                                    <option value="hours">Hours</option>
+                                    <option value="day">Day</option>
+                                    <option value="monthly">Monthly</option>
+                                    <option value="yearly">Yearly</option>
+                                    <option value="permanent" selected>Permanent</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label>Period Amount</label>
+                                <input id="ra" type="number" min="1" value="1">
+                            </div>
+                            <div class="field">
+                                <label>Status</label>
+                                <select id="rs">
+                                    <option value="active">Active</option>
+                                    <option value="nonaktif">Non-active</option>
+                                    <option value="ban">Banned</option>
+                                </select>
+                            </div>
+                            <div class="field full">
+                                <button class="primary" onclick="createReseller()">⟳ Create Reseller</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== CREDITS (Owner only) ===== -->
+                <section class="page owner-only" id="credits">
+                    <div class="panel credit-section">
+                        <h2><span class="emoji">◆</span> Dev Credit</h2>
+                        <p style="color:var(--muted); margin-bottom:8px;">Kelola saldo kredit pusat. Ketik angka, atau "unlimited" / "∞" untuk kredit tanpa batas.</p>
+                        <div class="credit-number" id="creditNum">0</div>
+                        <div class="field">
+                            <label>Set Credit</label>
+                            <input id="creditInput" type="text" placeholder='angka, atau "unlimited" / "∞"'>
+                        </div>
+                        <button class="primary" onclick="saveOwnerCredit()">💾 Save Credit</button>
+                        <div class="notice-box">
+                            <strong>Biaya license:</strong> Hours 2 · Day 5 · Weekly 30 · Monthly 100 · Yearly 500 · Permanent 1000 credits.<br>
+                            Kredit <b>∞ Unlimited</b> tidak pernah berkurang saat membuat license key.
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ===== CONTACT OWNER ===== -->
+                <section class="page" id="contact">
+                    <div class="panel contact-panel">
+                        <div class="panel-head"><h2><span class="emoji">☏</span> Kontak Owner</h2></div>
+                        <p style="color:var(--muted);margin-bottom:20px;">Hubungi Owner untuk bantuan, top-up kredit, atau pertanyaan lainnya.</p>
+                        <div class="contact-grid">
+                            <a class="contact-card wa" id="waApp" href="#" target="_blank" rel="noopener">
+                                <img src="https://cdn.phototourl.com/free/2026-08-27-cd5b0079-dcf8-496e-af94-be32a6512f1b.jpg" alt="WhatsApp">
+                                <div><b>WhatsApp</b><small>Chat langsung</small></div>
+                            </a>
+                            <a class="contact-card tg" id="tgApp" href="#" target="_blank" rel="noopener">
+                                <img src="https://cdn.phototourl.com/free/2026-08-27-2da23588-97a5-4279-9b2e-499f7e044c2f.jpg" alt="Telegram">
+                                <div><b>Telegram</b><small>@MARZZNJIR</small></div>
+                            </a>
+                            <a class="contact-card tt" id="ttApp" href="#" target="_blank" rel="noopener">
+                                <img src="https://cdn.phototourl.com/free/2026-08-27-a9da81b0-af49-4471-9443-a2a9f5c9a6a9.jpg" alt="TikTok">
+                                <div><b>TikTok</b><small>@andraapake_a</small></div>
+                            </a>
+                            <a class="contact-card web" id="webApp" href="#" target="_blank" rel="noopener">
+                                <img class="brand-logo-img" src="" alt="DamarzDev">
+                                <div><b>DamarzDev</b><small>Website / Store</small></div>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="footer">© 2026 DamarzDev · License Management Platform · All rights reserved.</footer>
+            </div>
+        </main>
+    </div>
+
+    <!-- ===== EXTEND / PERPANJANG MODAL (reusable) ===== -->
+    <div id="extendOverlay" class="modal-overlay" style="display:none" onclick="if(event.target===this) closeExtendModal()">
+        <div class="modal-box">
+            <div class="modal-head">
+                <h3 id="extendTitle"><span class="emoji">⏳</span> Perpanjang</h3>
+                <button class="modal-close" onclick="closeExtendModal()">✕</button>
+            </div>
+            <p class="modal-sub" id="extendSubtitle">—</p>
+            <div class="modal-current">
+                <span>Masa aktif saat ini</span>
+                <b id="extendCurrentUntil">—</b>
+            </div>
+            <div class="form-grid">
+                <div class="field">
+                    <label>Perpanjang Selama</label>
+                    <select id="extendPeriod" onchange="extendPeriodUI()">
+                        <option value="hours">Hours</option>
+                        <option value="day">Day</option>
+                        <option value="week">Week</option>
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                        <option value="custom">📅 Tanggal &amp; Jam Tertentu</option>
+                        <option value="permanent">Permanent (∞)</option>
+                    </select>
+                </div>
+                <div class="field" id="extendAmountBox">
+                    <label>Jumlah</label>
+                    <input id="extendAmount" type="number" min="1" value="1">
+                </div>
+                <div class="field" id="extendCustomBox" style="display:none;">
+                    <label>Aktif Sampai (tanggal &amp; jam)</label>
+                    <input id="extendCustomDate" type="datetime-local">
+                </div>
+                <div class="field full" id="extendFromNowRow">
+                    <label class="extend-check">
+                        <input type="checkbox" id="extendFromNow">
+                        Hitung mulai dari sekarang (bukan dari tanggal expired saat ini)
+                    </label>
+                </div>
+                <div class="field full modal-actions">
+                    <button class="btn-ghost" onclick="closeExtendModal()">Batal</button>
+                    <button class="primary" id="extendConfirmBtn" onclick="confirmExtend()">✓ Perpanjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/contact.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
