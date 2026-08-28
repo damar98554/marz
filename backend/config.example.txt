@@ -1,0 +1,4 @@
+# Backend config notes
+# The API automatically creates secret.key on first start.
+# Do NOT commit secret.key, setup.token, or data.sqlite3.
+# Frontend API URL is configured in frontend/js/api.js.
